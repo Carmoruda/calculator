@@ -6,6 +6,30 @@ root.title("Calculator")
 entry = Entry(root, width=45, borderwidth=5)
 entry.grid(row=0, column=0, columnspan=3, padx=10, pady=10)
 
+numbers = []
+
+
+def button_click(number):
+    current_number = entry.get()
+    entry.delete(0, END)
+    entry.insert(0, str(current_number) + str(number))
+
+
+def clear_action():
+    entry.delete(0, END)
+
+
+def add_action():
+    numbers.append(entry.get())
+    entry.delete(0, END)
+
+
+def equals_action():
+    numbers.append(entry.get())
+    entry.delete(0, END)
+    entry.insert(0, int(numbers[-1]) + int(numbers[-2]))
+
+
 # Define Buttons
 button_0 = Button(root, text='0', padx=40, pady=20, command=lambda: button_click(0))
 button_1 = Button(root, text='1', padx=40, pady=20, command=lambda: button_click(1))
@@ -18,7 +42,7 @@ button_7 = Button(root, text='7', padx=40, pady=20, command=lambda: button_click
 button_8 = Button(root, text='8', padx=40, pady=20, command=lambda: button_click(8))
 button_9 = Button(root, text='9', padx=40, pady=20, command=lambda: button_click(9))
 button_add = Button(root, text='+', padx=39, pady=20, command=add_action)
-button_equals = Button(root, text='=', padx=91, pady=20, command=lambda: equals_action())
+button_equals = Button(root, text='=', padx=91, pady=20, command=equals_action)
 button_clear = Button(root, text='Clear', padx=81, pady=20, command=clear_action)
 
 
